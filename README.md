@@ -80,8 +80,8 @@ https://github.com/user-attachments/assets/99826161-f821-4e4d-b9a8-b59c16d9894e
 
 - [ ] Vertical scrolling is synchronized with the Track List
 - [ ] Horizontal scrolling is synchronized with the Ruler
-- [ ] Segment length visually represents the total Duration (`1ms = 1px`)
-- [ ] Segment length updates only after specific actions on Duration input (losing focus, pressing Enter, using arrow keys, or clicking up/down buttons)
+- [V] Segment length visually represents the total Duration (`1ms = 1px`)
+- [V] Segment length updates only after specific actions on Duration input (losing focus, pressing Enter, using arrow keys, or clicking up/down buttons)
 
 ### 6. Playhead Behavior
 
