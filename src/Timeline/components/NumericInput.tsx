@@ -39,7 +39,7 @@ const NumericInput = ({ value, onChange, ...props }: NumericInputProps) => {
   return (
     <input
       {...props}
-      className={`${props.className} ${isInputStrLiterallyValid ? "" : "text-red-500"}`}
+      className={`${props.className ?? ""} ${isInputStrLiterallyValid ? "" : "text-red-500"}`}
       ref={ref}
       type="number"
       value={inputStr}
