@@ -1,11 +1,11 @@
 import { useLayoutEffect, useMemo, useRef, useState } from "react";
 import { getAtomTime } from "../utils";
 
-type NumericInputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, "value" | "onChange"> & {
+type NumericInputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, "value" | "onChange" | "min" | "max"> & {
   value: number;
+  onChange: (value: number) => void;
   min: number;
   max: number;
-  onChange: (value: number) => void;
 };
 
 const NumericInput = ({ value, onChange, ...props }: NumericInputProps) => {
@@ -14,7 +14,7 @@ const NumericInput = ({ value, onChange, ...props }: NumericInputProps) => {
 
   const isInputStrLiterallyValid = useMemo(() => {
     const newNum = Number(inputStr);
-    return getAtomTime(newNum) === newNum;
+    return getAtomTime(newNum) === newNum && newNum <= props.max && newNum >= props.min;
   }, [inputStr]);
 
   const handleSubmitChanges = (numStr: string) => {
