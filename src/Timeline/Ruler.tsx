@@ -2,6 +2,7 @@ import { useRef } from "react";
 import { useDraggable } from "./hooks/useDraggable";
 import clamp from "lodash/clamp";
 import { useStore } from "./hooks/useStore";
+import { getAtomTime, timeToPixel, pixelToTime } from "./utils";
 
 export const Ruler = () => {
   const duration = useStore((state) => state.duration);
@@ -9,8 +10,8 @@ export const Ruler = () => {
 
   const draggableRef = useRef<HTMLDivElement>(null);
 
-  const handleChangeTime = (time: number) => {
-    const transformedTime = clamp(Math.floor(time / 10) * 10, 0, duration);
+  const handleChangeTime = (pixelLeft: number) => {
+    const transformedTime = clamp(getAtomTime(pixelToTime(pixelLeft)), 0, duration);
     updatePlayheadTime(transformedTime);
   };
 
@@ -41,7 +42,7 @@ export const Ruler = () => {
     >
       <div
         className="h-6 rounded-md bg-white/25"
-        style={{ width: duration }}
+        style={{ width: timeToPixel(duration) }}
         data-testid="ruler-bar"
         ref={draggableRef}
       />
