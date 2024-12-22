@@ -7,9 +7,11 @@ type StoreState = {
   updateDuration: (duration: number) => void;
 };
 
-export const useStore = create<StoreState>((set) => ({
+const useTimelineStore = create<StoreState>((set) => ({
   playheadTime: 0,
   updatePlayheadTime: (time: number) => set({ playheadTime: time }),
   duration: 2000,
   updateDuration: (duration: number) => set({ duration }),
 }));
+
+export default useTimelineStore;

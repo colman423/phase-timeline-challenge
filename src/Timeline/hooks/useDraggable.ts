@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import throttle from "lodash/throttle";
 
-export const useDraggable = <RefElem extends HTMLElement, Context>(
+const useDraggable = <RefElem extends HTMLElement, Context>(
   ref: React.RefObject<RefElem>,
   initContext: Context,
   options: {
@@ -62,3 +62,5 @@ export const useDraggable = <RefElem extends HTMLElement, Context>(
 
   return ref;
 };
+
+export default useDraggable;

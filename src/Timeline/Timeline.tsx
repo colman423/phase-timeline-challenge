@@ -3,11 +3,11 @@ import { Ruler } from "./Ruler";
 import { TrackList } from "./TrackList";
 import { KeyframeList } from "./KeyframeList";
 import { PlayControls } from "./PlayControls";
-import { useStore } from "./hooks/useStore";
+import { useTimelineStore } from "./hooks";
 
 export const Timeline = () => {
-  const playheadTime = useStore((state) => state.playheadTime);
-  const updatePlayheadTime = useStore((state) => state.updatePlayheadTime);
+  const playheadTime = useTimelineStore((state) => state.playheadTime);
+  const updatePlayheadTime = useTimelineStore((state) => state.updatePlayheadTime);
 
   return (
     <div

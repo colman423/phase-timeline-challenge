@@ -1,12 +1,11 @@
 import { useRef } from "react";
-import { useDraggable } from "./hooks/useDraggable";
 import clamp from "lodash/clamp";
-import { useStore } from "./hooks/useStore";
 import { getAtomTime, timeToPixel, pixelToTime } from "./utils";
+import { useDraggable, useTimelineStore } from "./hooks";
 
 export const Ruler = () => {
-  const duration = useStore((state) => state.duration);
-  const updatePlayheadTime = useStore((state) => state.updatePlayheadTime);
+  const duration = useTimelineStore((state) => state.duration);
+  const updatePlayheadTime = useTimelineStore((state) => state.updatePlayheadTime);
 
   const draggableRef = useRef<HTMLDivElement>(null);
 
