@@ -1,13 +1,13 @@
-import { useState } from "react";
 import { Playhead } from "./Playhead";
 import { Ruler } from "./Ruler";
 import { TrackList } from "./TrackList";
 import { KeyframeList } from "./KeyframeList";
 import { PlayControls } from "./PlayControls";
+import { useStore } from "./utils/useStore";
 
 export const Timeline = () => {
-  // FIXME: performance concerned
-  const [time, setTime] = useState(0);
+  const time = useStore((state) => state.time);
+  const setTime = useStore((state) => state.setTime);
 
   return (
     <div
