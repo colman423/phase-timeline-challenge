@@ -1,12 +1,14 @@
 import { useRef } from "react";
 import clamp from "lodash/clamp";
 import { getAtomTime, timeToPixel, pixelToTime } from "./utils";
-import { useDraggable, useTimelineStore } from "./hooks";
+import { useDraggable, useGlobalScroll, useTimelineStore } from "./hooks";
 
 export const Ruler = () => {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  useGlobalScroll(scrollRef, { horizontal: true });
+
   const duration = useTimelineStore((state) => state.duration);
   const updatePlayheadTime = useTimelineStore((state) => state.updatePlayheadTime);
-
   const draggableRef = useRef<HTMLDivElement>(null);
 
   const handleChangeTime = (pixelLeft: number) => {
@@ -38,6 +40,7 @@ export const Ruler = () => {
       border-b border-solid border-gray-700 
       overflow-x-auto overflow-y-hidden"
       data-testid="ruler"
+      ref={scrollRef}
     >
       <div
         className="h-6 rounded-md bg-gradient-to-r from-red-500 to-blue-500"

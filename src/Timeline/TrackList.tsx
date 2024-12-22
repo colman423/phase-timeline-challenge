@@ -1,5 +1,9 @@
+import { useRef } from "react";
+import { useGlobalScroll } from "./hooks";
+
 export const TrackList = () => {
-  // TODO: implement scroll sync with `KeyframeList`
+  const scrollRef = useRef<HTMLDivElement>(null);
+  useGlobalScroll(scrollRef, { vertical: true });
 
   return (
     <div
@@ -7,6 +11,7 @@ export const TrackList = () => {
       border-r border-solid border-r-gray-700 
       overflow-auto"
       data-testid="track-list"
+      ref={scrollRef}
     >
       <div className="p-2">
         <div>Track A</div>
