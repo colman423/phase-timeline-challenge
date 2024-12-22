@@ -9,6 +9,8 @@ type StoreState = {
   updateVerticalScroll: (scroll: number) => void;
   horizontalScroll: number;
   updateHorizontalScroll: (scroll: number) => void;
+  playheadContainerWidth: number;
+  updatePlayheadContainerWidth: (width: number) => void;
 };
 
 const useTimelineStore = create<StoreState>((set) => ({
@@ -24,6 +26,8 @@ const useTimelineStore = create<StoreState>((set) => ({
   updateVerticalScroll: (scroll: number) => set({ verticalScroll: scroll }),
   horizontalScroll: 0,
   updateHorizontalScroll: (scroll: number) => set({ horizontalScroll: scroll }),
+  playheadContainerWidth: 0,
+  updatePlayheadContainerWidth: (width: number) => set({ playheadContainerWidth: width }),
 }));
 
 export default useTimelineStore;

@@ -2,10 +2,15 @@ import { useRef } from "react";
 import clamp from "lodash/clamp";
 import { getAtomTime, timeToPixel, pixelToTime } from "./utils";
 import { useDraggable, useGlobalHorizontalScroll, useTimelineStore } from "./hooks";
+import { RULER_PADDING_X } from "./constants";
+import useScalable from "./hooks/useScalable";
 
 export const Ruler = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
   useGlobalHorizontalScroll(scrollRef);
+
+  const updatePlayheadContainerWidth = useTimelineStore((state) => state.updatePlayheadContainerWidth);
+  useScalable(scrollRef, ({ width }) => updatePlayheadContainerWidth(width));
 
   const duration = useTimelineStore((state) => state.duration);
   const updatePlayheadTime = useTimelineStore((state) => state.updatePlayheadTime);
@@ -36,10 +41,11 @@ export const Ruler = () => {
 
   return (
     <div
-      className="px-4 py-2 min-w-0 
+      className="py-2 min-w-0 
       border-b border-solid border-gray-700 
       overflow-x-auto overflow-y-hidden"
       data-testid="ruler"
+      style={{ paddingLeft: RULER_PADDING_X, paddingRight: RULER_PADDING_X }}
       ref={scrollRef}
     >
       <div
