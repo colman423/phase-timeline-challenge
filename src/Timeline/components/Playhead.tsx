@@ -13,7 +13,7 @@ export const Playhead = () => {
 
   return (
     <div
-      className="absolute h-full border-l-2 border-solid border-yellow-600 z-10"
+      className="absolute h-full border-l-2 border-solid border-yellow-600 z-10 pointer-events-none"
       data-testid="playhead"
       style={{ left: 300 + RULER_PADDING_X, transform: `translateX(calc(${positionX}px - 50%))` }}
       hidden={isHidden}
