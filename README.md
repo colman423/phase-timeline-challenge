@@ -34,30 +34,30 @@ Implement interactive features for a Timeline component. We will provide a basic
 
 https://github.com/user-attachments/assets/8dd5ef2b-6b57-43dc-91b3-0d322d148781
 
-- [ ] The displayed value updates immediately while typing, but `onChange` is not triggered until input is confirmed
-- [ ] Clicking outside the input field removes focus and changes the value
-- [ ] Clicking on the native step buttons immediately changes the value
-- [ ] Pressing up arrow or down arrow keys immediately changes the value
-- [ ] Entire text is selected when the input field gains focus
-- [ ] Entire text is selected after using the native step buttons
-- [ ] Entire text is selected after using the up arrow or down arrow keys
-- [ ] Pressing Enter confirms the new value and removes focus
-- [ ] Pressing Escape reverts to the original value and removes focus
-- [ ] Leading zeros are automatically removed
-- [ ] Negative values are automatically adjusted to the minimum allowed value
-- [ ] Decimal values are automatically rounded to the nearest integer
-- [ ] Invalid inputs (non-numeric) revert to the previous valid value
+- [V] The displayed value updates immediately while typing, but `onChange` is not triggered until input is confirmed
+- [V] Clicking outside the input field removes focus and changes the value
+- [V] Clicking on the native step buttons immediately changes the value
+- [V] Pressing up arrow or down arrow keys immediately changes the value
+- [V] Entire text is selected when the input field gains focus
+- [V] Entire text is selected after using the native step buttons
+- [V] Entire text is selected after using the up arrow or down arrow keys
+- [V] Pressing Enter confirms the new value and removes focus
+- [V] Pressing Escape reverts to the original value and removes focus
+- [V] Leading zeros are automatically removed
+- [V] Negative values are automatically adjusted to the minimum allowed value
+- [V] Decimal values are automatically rounded to the nearest integer
+- [V] Invalid inputs (non-numeric) revert to the previous valid value
 
 ### 2. Play Controls Behavior
 
 https://github.com/user-attachments/assets/9a669854-e0c5-4950-8364-10fe0b40d16b
 
-- [ ] Current Time is always between `0ms` and the Duration
+- [V] Current Time is always between `0ms` and the Duration
 - [ ] Current Time adjusts if it exceeds the newly set Duration
 - [ ] Duration is always between `100ms` and `6000ms`
-- [ ] Current Time and Duration are always multiples of `10ms`
-- [ ] Current Time and Duration are always positive integers
-- [ ] Playhead position updates only after specific actions on Current Time input (losing focus, pressing Enter, using arrow keys, or clicking up/down buttons)
+- [V] Current Time and Duration are always multiples of `10ms`
+- [V] Current Time and Duration are always positive integers
+- [V] Playhead position updates only after specific actions on Current Time input (losing focus, pressing Enter, using arrow keys, or clicking up/down buttons)
 
 ### 3. Ruler Behavior
 

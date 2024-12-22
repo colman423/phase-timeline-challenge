@@ -1,6 +1,8 @@
-import React from "react";
 import { useTimelineStore } from "./hooks";
-import { ATOM_UNIT, MAX_DURATION } from "./constants";
+import { ATOM_UNIT, MAX_DURATION, MIN_DURATION } from "./constants";
+import NumericInput from "./NumericInput";
+import clamp from "lodash/clamp";
+import { getAtomTime } from "./utils";
 
 export const PlayControls = () => {
   const playheadTime = useTimelineStore((state) => state.playheadTime);
@@ -8,12 +10,12 @@ export const PlayControls = () => {
   const duration = useTimelineStore((state) => state.duration);
   const updateDuration = useTimelineStore((state) => state.updateDuration);
 
-  const onTimeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    updatePlayheadTime(Number(e.target.value));
+  const handleSubmitPlayheadTime = (value: number) => {
+    updatePlayheadTime(clamp(getAtomTime(value), 0, duration));
   };
 
-  const handleDurationChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    updateDuration(Number(e.target.value));
+  const handleSubmitDuration = (value: number) => {
+    updateDuration(clamp(getAtomTime(value), MIN_DURATION, MAX_DURATION));
   };
 
   return (
@@ -24,28 +26,26 @@ export const PlayControls = () => {
     >
       <fieldset className="flex gap-1">
         Current
-        <input
+        <NumericInput
           className="bg-gray-700 px-1 rounded"
-          type="number"
           data-testid="current-time-input"
           min={0}
           max={2000}
           step={ATOM_UNIT}
           value={playheadTime}
-          onChange={onTimeChange}
+          onSubmit={handleSubmitPlayheadTime}
         />
       </fieldset>
       -
       <fieldset className="flex gap-1">
-        <input
+        <NumericInput
           className="bg-gray-700 px-1 rounded"
-          type="number"
           data-testid="duration-input"
-          min={100}
+          min={MIN_DURATION}
           max={MAX_DURATION}
           step={ATOM_UNIT}
           value={duration}
-          onChange={handleDurationChange}
+          onSubmit={handleSubmitDuration}
         />
         Duration
       </fieldset>
