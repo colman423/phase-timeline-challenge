@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React from "react";
 
 type PlayControlsProps = {
   time: number;
@@ -8,12 +8,9 @@ type PlayControlsProps = {
 export const PlayControls = ({ time, setTime }: PlayControlsProps) => {
   // TODO: implement time <= maxTime
 
-  const onTimeChange = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      setTime(Number(e.target.value));
-    },
-    [setTime],
-  );
+  const onTimeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTime(Number(e.target.value));
+  };
 
   return (
     <div
