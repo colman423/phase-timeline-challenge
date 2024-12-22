@@ -15,7 +15,11 @@ const useTimelineStore = create<StoreState>((set) => ({
   playheadTime: 0,
   updatePlayheadTime: (time: number) => set({ playheadTime: time }),
   duration: 2000,
-  updateDuration: (duration: number) => set({ duration }),
+  updateDuration: (duration: number) => {
+    set((state) => {
+      return { duration, playheadTime: Math.min(duration, state.playheadTime) };
+    });
+  },
   verticalScroll: 0,
   updateVerticalScroll: (scroll: number) => set({ verticalScroll: scroll }),
   horizontalScroll: 0,

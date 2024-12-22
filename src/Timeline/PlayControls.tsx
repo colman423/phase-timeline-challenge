@@ -30,7 +30,7 @@ export const PlayControls = () => {
           className="bg-gray-700 px-1 rounded"
           data-testid="current-time-input"
           min={0}
-          max={2000}
+          max={duration}
           step={ATOM_UNIT}
           value={playheadTime}
           onSubmit={handleSubmitPlayheadTime}

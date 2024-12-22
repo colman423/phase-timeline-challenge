@@ -53,7 +53,7 @@ https://github.com/user-attachments/assets/8dd5ef2b-6b57-43dc-91b3-0d322d148781
 https://github.com/user-attachments/assets/9a669854-e0c5-4950-8364-10fe0b40d16b
 
 - [V] Current Time is always between `0ms` and the Duration
-- [ ] Current Time adjusts if it exceeds the newly set Duration
+- [V] Current Time adjusts if it exceeds the newly set Duration
 - [V] Duration is always between `100ms` and `6000ms`
 - [V] Current Time and Duration are always multiples of `10ms`
 - [V] Current Time and Duration are always positive integers
