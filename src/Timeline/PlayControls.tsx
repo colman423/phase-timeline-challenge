@@ -1,12 +1,10 @@
 import React from "react";
 import { useTimelineStore } from "./hooks";
-import { MAX_DURATION } from "./constants";
+import { ATOM_UNIT, MAX_DURATION } from "./constants";
 
 export const PlayControls = () => {
   const playheadTime = useTimelineStore((state) => state.playheadTime);
-  const updatePlayheadTime = useTimelineStore(
-    (state) => state.updatePlayheadTime
-  );
+  const updatePlayheadTime = useTimelineStore((state) => state.updatePlayheadTime);
   const duration = useTimelineStore((state) => state.duration);
   const updateDuration = useTimelineStore((state) => state.updateDuration);
 
@@ -32,7 +30,7 @@ export const PlayControls = () => {
           data-testid="current-time-input"
           min={0}
           max={2000}
-          step={10}
+          step={ATOM_UNIT}
           value={playheadTime}
           onChange={onTimeChange}
         />
@@ -45,7 +43,7 @@ export const PlayControls = () => {
           data-testid="duration-input"
           min={100}
           max={MAX_DURATION}
-          step={10}
+          step={ATOM_UNIT}
           value={duration}
           onChange={handleDurationChange}
         />
