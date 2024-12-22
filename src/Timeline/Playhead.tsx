@@ -13,9 +13,9 @@ export const Playhead = () => {
 
   return (
     <div
-      className="absolute left-[316px] h-full border-l-2 border-solid border-yellow-600 z-10"
+      className="absolute h-full border-l-2 border-solid border-yellow-600 z-10"
       data-testid="playhead"
-      style={{ transform: `translateX(calc(${positionX}px - 50%))` }}
+      style={{ left: 300 + RULER_PADDING_X, transform: `translateX(calc(${positionX}px - 50%))` }}
       hidden={isHidden}
     >
       <div className="absolute border-solid border-[5px] border-transparent border-t-yellow-600 -translate-x-1.5" />
