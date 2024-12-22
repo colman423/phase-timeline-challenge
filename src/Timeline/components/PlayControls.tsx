@@ -1,8 +1,8 @@
-import { useTimelineStore } from "./hooks";
-import { ATOM_UNIT, MAX_DURATION, MIN_DURATION } from "./constants";
+import { useTimelineStore } from "../hooks";
+import { ATOM_UNIT, MAX_DURATION, MIN_DURATION } from "../constants";
 import NumericInput from "./NumericInput";
 import clamp from "lodash/clamp";
-import { getAtomTime } from "./utils";
+import { getAtomTime } from "../utils";
 
 export const PlayControls = () => {
   const playheadTime = useTimelineStore((state) => state.playheadTime);

@@ -1,6 +1,6 @@
-import { RULER_PADDING_X } from "./constants";
-import { useTimelineStore } from "./hooks";
-import { timeToPixel } from "./utils";
+import { RULER_PADDING_X } from "../constants";
+import { useTimelineStore } from "../hooks";
+import { timeToPixel } from "../utils";
 
 export const Playhead = () => {
   const playheadTime = useTimelineStore((state) => state.playheadTime);

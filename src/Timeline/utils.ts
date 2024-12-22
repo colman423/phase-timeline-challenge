@@ -1,4 +1,4 @@
-import { ATOM_UNIT, SCREEN_PIXEL_RATIO } from "../constants";
+import { ATOM_UNIT, SCREEN_PIXEL_RATIO } from "./constants";
 
 export const getAtomTime = (time: number) => {
   return Math.round(time / ATOM_UNIT) * ATOM_UNIT;

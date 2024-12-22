@@ -1,9 +1,8 @@
 import { useRef } from "react";
 import clamp from "lodash/clamp";
-import { getAtomTime, timeToPixel, pixelToTime } from "./utils";
-import { useDraggable, useGlobalHorizontalScroll, useTimelineStore } from "./hooks";
-import { RULER_PADDING_X } from "./constants";
-import useScalable from "./hooks/useScalable";
+import { getAtomTime, timeToPixel, pixelToTime } from "../utils";
+import { useDraggable, useGlobalHorizontalScroll, useTimelineStore, useScalable } from "../hooks";
+import { RULER_PADDING_X } from "../constants";
 
 export const Ruler = () => {
   const scrollRef = useRef<HTMLDivElement>(null);

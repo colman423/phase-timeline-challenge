@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { Segment } from "./Segment";
-import { useGlobalHorizontalScroll, useGlobalVerticalScroll } from "./hooks";
-import { RULER_PADDING_X } from "./constants";
+import { useGlobalHorizontalScroll, useGlobalVerticalScroll } from "../hooks";
+import { RULER_PADDING_X } from "../constants";
 
 export const KeyframeList = () => {
   const scrollRef = useRef<HTMLDivElement>(null);

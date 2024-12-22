@@ -1,5 +1,5 @@
-import { useTimelineStore } from "./hooks";
-import { timeToPixel } from "./utils";
+import { useTimelineStore } from "../hooks";
+import { timeToPixel } from "../utils";
 
 export const Segment = () => {
   const duration = useTimelineStore((state) => state.duration);
