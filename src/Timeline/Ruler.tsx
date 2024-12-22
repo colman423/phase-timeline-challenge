@@ -1,11 +1,11 @@
 import { useRef } from "react";
 import clamp from "lodash/clamp";
 import { getAtomTime, timeToPixel, pixelToTime } from "./utils";
-import { useDraggable, useGlobalScroll, useTimelineStore } from "./hooks";
+import { useDraggable, useGlobalHorizontalScroll, useTimelineStore } from "./hooks";
 
 export const Ruler = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
-  useGlobalScroll(scrollRef, { horizontal: true });
+  useGlobalHorizontalScroll(scrollRef);
 
   const duration = useTimelineStore((state) => state.duration);
   const updatePlayheadTime = useTimelineStore((state) => state.updatePlayheadTime);

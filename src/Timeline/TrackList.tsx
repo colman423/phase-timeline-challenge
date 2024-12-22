@@ -1,9 +1,9 @@
 import { useRef } from "react";
-import { useGlobalScroll } from "./hooks";
+import { useGlobalVerticalScroll } from "./hooks";
 
 export const TrackList = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
-  useGlobalScroll(scrollRef, { vertical: true });
+  useGlobalVerticalScroll(scrollRef);
 
   return (
     <div
