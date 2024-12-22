@@ -1,3 +1,117 @@
+# Documents of Kai's Implementations
+
+## Table
+
+- [Installation and Quick Start](#installation-and-quick-start)
+
+- [Implement Concept](#implement-concept)
+
+  - [Configurable UI Constants](#configurable-ui-constants)
+
+  - [State Management](#state-management)
+
+  - [React Hooks](#react-hooks)
+
+- [DOM Hierarchy proposal](#dom-hierarchy-proposal)
+
+  - [Scroll Container](#scroll-container)
+
+  - [Playhead Visibility](#playhead-visibility)
+
+- [Git Logs](#git-logs)
+
+## Installation and Quick Start
+
+1. Use node v18, or if [.nvmrc](https://github.com/nvm-sh/nvm?tab=readme-ov-file#nvmrc) is installed, directly open the terminal.
+
+1. Install yarn classic by `npm install --global yarn`
+
+1. Run `yarn` to install packages.
+
+1. Run `yarn run start` and open http://localhost:3000 to view the demo.
+
+1. In `src/Timeline/constants.ts` there're some constants that can be easily modified. Try modify them and see the UI changes.
+
+1. Run `yarn run test` to run the jest test.
+
+## Implement Concept
+
+### Configurable UI Constants
+
+- In `src/Timeline/constants.ts`, multiple constants are built for easy modification and extensibility. Documents are inside the codebase.
+
+  In `src/Timeline/utils.ts`, functions are built for bridging the above constants to components.
+
+- For example, if PM wishes, we can quickly change the max duration of the timeline, or base time unit of each operation (currently 10ms).
+
+- Or, we can add feature that can scale the ruler and keyframe by dynamic updating `screenPixelRatio`.
+
+### State Management
+
+- Did not choose to create multiple `useState` in the root component. Since it creates props drilling and cause unnecessary re-renders.
+
+  Therefore, need to choose a global state management solution.
+
+- Did not choose to import **React Redux** libraries. Since such a complete functionalities is not suitable this tiny project.
+
+- Did not choose to use **React Context**. Since it require writing boilerplate codes, or building wheels by my own.
+
+- **Zustand** is chosen. The concept is building simple `get, set` on a global store. It does not rely on React Context, nor is a Flux pattern. And it only triggers re-renders on the selected state changed.
+
+### React Hooks
+
+- Two React hooks I built before are imported: `useDraggable, useScalable`.
+
+  They can hide the implements of something like `mousedown, mouseup, ResizeObserver` and expose only the APIs for business logics.
+
+  Documents are inside the codebase.
+
+- `useTimelineStore` owns the zustand things.
+
+- `useGlobalScroll` synchronizes components' `scrollLeft` and `scrollTop` into zustand store.
+
+## DOM Hierarchy proposal
+
+If I can build the project from zero, some DOM hierarchy changes might be proposed.
+
+I didn't change the current hierarchy, because it might break the behavior of automated assessment mentioned in this document.
+
+### Scroll Container
+
+We can put `Ruler, KeyframeList, Playhead` into a same ancestor, so that we can reduce codes for syncing horizontal scrolling. Just let the browser do for us.
+
+### Playhead Visibility
+
+We can put `Playhead` under `Ruler`, so that we can reduce code for calculating `hidden`. Just let the css do for us.
+
+## Git Logs
+
+- Most of commits are done within 30 minutes, it's because I used to rearrange every commits before pushing and submitting PR.
+
+- Personally I have above commit prefix, but it depends on team convention and team rules.
+
+  - `impl`: Implement features. Implement non-features functions. Implement testing.
+
+  - `fix`: Fix bugs
+
+  - `refator`: Improve the readiblity, maintainbility or extensibility. Behaviors should not be changed.
+
+  - `chore`: Things that is not so important.
+
+  - `doc`: Updating documents.
+
+  - `debug, tmp`: Add some things for debug. Normally it should not be pushed, but I made mistake this time and I don't want to force push the `main` branch to fix it.
+
+## TODO
+
+- write test
+
+- jsdoc for constatns, hooks
+
+- revert bg color debug
+
+# Phase Timeline Challenge
+
 # Phase Timeline Challenge
 
 ## Overview
@@ -34,62 +148,62 @@ Implement interactive features for a Timeline component. We will provide a basic
 
 https://github.com/user-attachments/assets/8dd5ef2b-6b57-43dc-91b3-0d322d148781
 
-- [V] The displayed value updates immediately while typing, but `onChange` is not triggered until input is confirmed
-- [V] Clicking outside the input field removes focus and changes the value
-- [V] Clicking on the native step buttons immediately changes the value
-- [V] Pressing up arrow or down arrow keys immediately changes the value
-- [V] Entire text is selected when the input field gains focus
-- [V] Entire text is selected after using the native step buttons
-- [V] Entire text is selected after using the up arrow or down arrow keys
-- [V] Pressing Enter confirms the new value and removes focus
-- [V] Pressing Escape reverts to the original value and removes focus
-- [V] Leading zeros are automatically removed
-- [V] Negative values are automatically adjusted to the minimum allowed value
-- [V] Decimal values are automatically rounded to the nearest integer
-- [V] Invalid inputs (non-numeric) revert to the previous valid value
+- [x] The displayed value updates immediately while typing, but `onChange` is not triggered until input is confirmed
+- [x] Clicking outside the input field removes focus and changes the value
+- [x] Clicking on the native step buttons immediately changes the value
+- [x] Pressing up arrow or down arrow keys immediately changes the value
+- [x] Entire text is selected when the input field gains focus
+- [x] Entire text is selected after using the native step buttons
+- [x] Entire text is selected after using the up arrow or down arrow keys
+- [x] Pressing Enter confirms the new value and removes focus
+- [x] Pressing Escape reverts to the original value and removes focus
+- [x] Leading zeros are automatically removed
+- [x] Negative values are automatically adjusted to the minimum allowed value
+- [x] Decimal values are automatically rounded to the nearest integer
+- [x] Invalid inputs (non-numeric) revert to the previous valid value
 
 ### 2. Play Controls Behavior
 
 https://github.com/user-attachments/assets/9a669854-e0c5-4950-8364-10fe0b40d16b
 
-- [V] Current Time is always between `0ms` and the Duration
-- [V] Current Time adjusts if it exceeds the newly set Duration
-- [V] Duration is always between `100ms` and `6000ms`
-- [V] Current Time and Duration are always multiples of `10ms`
-- [V] Current Time and Duration are always positive integers
-- [V] Playhead position updates only after specific actions on Current Time input (losing focus, pressing Enter, using arrow keys, or clicking up/down buttons)
+- [x] Current Time is always between `0ms` and the Duration
+- [x] Current Time adjusts if it exceeds the newly set Duration
+- [x] Duration is always between `100ms` and `6000ms`
+- [x] Current Time and Duration are always multiples of `10ms`
+- [x] Current Time and Duration are always positive integers
+- [x] Playhead position updates only after specific actions on Current Time input (losing focus, pressing Enter, using arrow keys, or clicking up/down buttons)
 
 ### 3. Ruler Behavior
 
 https://github.com/user-attachments/assets/42190ade-f708-45a1-8168-2be779c66390
 
-- [V] Clicking or dragging on the Ruler updates the Current Time and Playhead position
-- [V] Horizontal scrolling of the Ruler is synchronized with the Keyframe List
-- [V] Ruler length visually represents the total Duration (`1ms = 1px`)
-- [V] Ruler length updates only after specific actions on Duration input (losing focus, pressing Enter, using arrow keys, or clicking up/down buttons)
+- [x] Clicking or dragging on the Ruler updates the Current Time and Playhead position
+- [x] Horizontal scrolling of the Ruler is synchronized with the Keyframe List
+- [x] Ruler length visually represents the total Duration (`1ms = 1px`)
+- [x] Ruler length updates only after specific actions on Duration input (losing focus, pressing Enter, using arrow keys, or clicking up/down buttons)
 
 ### 4. Track List Behavior
 
 https://github.com/user-attachments/assets/94b5e2c8-ef32-488e-97e4-d53036bbf2f7
 
-- [V] Vertical scrolling of the Track List is synchronized with the Keyframe List
+- [x] Vertical scrolling of the Track List is synchronized with the Keyframe List
 
 ### 5. Keyframe List Behavior
 
 https://github.com/user-attachments/assets/99826161-f821-4e4d-b9a8-b59c16d9894e
 
-- [V] Vertical scrolling is synchronized with the Track List
-- [V] Horizontal scrolling is synchronized with the Ruler
-- [V] Segment length visually represents the total Duration (`1ms = 1px`)
-- [V] Segment length updates only after specific actions on Duration input (losing focus, pressing Enter, using arrow keys, or clicking up/down buttons)
+- [x] Vertical scrolling is synchronized with the Track List
+- [x] Horizontal scrolling is synchronized with the Ruler
+- [x] Segment length visually represents the total Duration (`1ms = 1px`)
+- [x] Segment length updates only after specific actions on Duration input (losing focus, pressing Enter, using arrow keys, or clicking up/down buttons)
 
 ### 6. Playhead Behavior
 
 https://github.com/user-attachments/assets/3940cd0d-dd9d-4331-9172-592462ad65d3
 
-- [V] Playhead moves in sync with the Ruler and Keyframe List during horizontal scrolling
-- [V] Playhead maintains its relative position during horizontal scrolling
-- [V] Playhead is visible only when within the Timeline's visible area, using the `hidden` attribute when completely out of view
+- [x] Playhead moves in sync with the Ruler and Keyframe List during horizontal scrolling
+- [x] Playhead maintains its relative position during horizontal scrolling
+- [x] Playhead is visible only when within the Timeline's visible area, using the `hidden` attribute when completely out of view
 
 ## Implementation Guidelines
 
