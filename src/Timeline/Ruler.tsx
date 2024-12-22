@@ -40,7 +40,7 @@ export const Ruler = () => {
       data-testid="ruler"
     >
       <div
-        className="h-6 rounded-md bg-white/25"
+        className="h-6 rounded-md bg-gradient-to-r from-red-500 to-blue-500"
         style={{ width: timeToPixel(duration) }}
         data-testid="ruler-bar"
         ref={draggableRef}

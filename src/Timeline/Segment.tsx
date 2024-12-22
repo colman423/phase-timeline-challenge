@@ -6,7 +6,7 @@ export const Segment = () => {
 
   return (
     <div className="py-2" data-testid="segment" style={{ width: timeToPixel(duration) }}>
-      <div className="h-6 rounded-md bg-white/10"></div>
+      <div className="h-6 rounded-md bg-gradient-to-r from-red-500 to-blue-500"></div>
     </div>
   );
 };
