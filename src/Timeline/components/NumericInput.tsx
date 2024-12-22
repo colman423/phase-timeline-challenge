@@ -1,14 +1,14 @@
 import { useLayoutEffect, useMemo, useRef, useState } from "react";
 import { getAtomTime } from "../utils";
 
-type NumericInputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, "value" | "onSubmit"> & {
+type NumericInputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, "value" | "onChange"> & {
   value: number;
   min: number;
   max: number;
-  onSubmit: (value: number) => void;
+  onChange: (value: number) => void;
 };
 
-const NumericInput = ({ value, onSubmit, ...props }: NumericInputProps) => {
+const NumericInput = ({ value, onChange, ...props }: NumericInputProps) => {
   const [inputStr, setInputStr] = useState("");
   const ref = useRef<HTMLInputElement>(null);
 
@@ -22,7 +22,7 @@ const NumericInput = ({ value, onSubmit, ...props }: NumericInputProps) => {
     if (isNaN(newNum)) {
       setInputStr(value.toString());
     } else {
-      onSubmit(newNum);
+      onChange(newNum);
       setInputStr(value.toString()); // NOTE: For prevent cases like 33 => 34 => 32
     }
   };

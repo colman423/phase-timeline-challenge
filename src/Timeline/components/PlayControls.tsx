@@ -33,7 +33,7 @@ export const PlayControls = () => {
           max={duration}
           step={ATOM_UNIT}
           value={playheadTime}
-          onSubmit={handleSubmitPlayheadTime}
+          onChange={handleSubmitPlayheadTime}
         />
       </fieldset>
       -
@@ -45,7 +45,7 @@ export const PlayControls = () => {
           max={MAX_DURATION}
           step={ATOM_UNIT}
           value={duration}
-          onSubmit={handleSubmitDuration}
+          onChange={handleSubmitDuration}
         />
         Duration
       </fieldset>
