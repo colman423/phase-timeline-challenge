@@ -1,17 +1,17 @@
 import { useRef } from "react";
-import { useDraggable } from "./utils/useDraggable";
+import { useDraggable } from "./hooks/useDraggable";
 import clamp from "lodash/clamp";
+import { useStore } from "./hooks/useStore";
 
-type RulerProps = {
-  setTime: (time: number) => void;
-};
+export const Ruler = () => {
+  const duration = useStore((state) => state.duration);
+  const updatePlayheadTime = useStore((state) => state.updatePlayheadTime);
 
-export const Ruler = ({ setTime }: RulerProps) => {
   const draggableRef = useRef<HTMLDivElement>(null);
 
   const handleChangeTime = (time: number) => {
-    const transformedTime = clamp(Math.floor(time / 10) * 10, 0, 2000); // TODO: duration
-    setTime(transformedTime);
+    const transformedTime = clamp(Math.floor(time / 10) * 10, 0, duration);
+    updatePlayheadTime(transformedTime);
   };
 
   useDraggable(
@@ -40,7 +40,8 @@ export const Ruler = ({ setTime }: RulerProps) => {
       data-testid="ruler"
     >
       <div
-        className="w-[2000px] h-6 rounded-md bg-white/25"
+        className="h-6 rounded-md bg-white/25"
+        style={{ width: duration }}
         data-testid="ruler-bar"
         ref={draggableRef}
       />
