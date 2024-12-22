@@ -1,7 +1,10 @@
-import { useEffect, useRef, useState } from "react";
+import { useLayoutEffect, useMemo, useRef, useState } from "react";
+import { getAtomTime } from "../utils";
 
 type NumericInputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, "value" | "onSubmit"> & {
   value: number;
+  min: number;
+  max: number;
   onSubmit: (value: number) => void;
 };
 
@@ -9,13 +12,34 @@ const NumericInput = ({ value, onSubmit, ...props }: NumericInputProps) => {
   const [inputStr, setInputStr] = useState("");
   const ref = useRef<HTMLInputElement>(null);
 
-  useEffect(() => {
+  const isInputStrLiterallyValid = useMemo(() => {
+    const newNum = Number(inputStr);
+    return getAtomTime(newNum) === newNum;
+  }, [inputStr]);
+
+  const handleSubmitChanges = (numStr: string) => {
+    const newNum = Number(numStr);
+    if (isNaN(newNum)) {
+      setInputStr(value.toString());
+    } else {
+      onSubmit(newNum);
+      setInputStr(value.toString()); // NOTE: For prevent cases like 33 => 34 => 32
+    }
+  };
+
+  const handleSelect = (target: HTMLInputElement) => {
+    // WORKAROUND: setTimeout is needed to make sure the selection is applied
+    setTimeout(() => target.select(), 10);
+  };
+
+  useLayoutEffect(() => {
     setInputStr(value.toString());
   }, [value]);
 
   return (
     <input
       {...props}
+      className={`${props.className} ${isInputStrLiterallyValid ? "" : "text-red-500"}`}
       ref={ref}
       type="number"
       value={inputStr}
@@ -23,14 +47,9 @@ const NumericInput = ({ value, onSubmit, ...props }: NumericInputProps) => {
         const isByNativeChange = !("inputType" in e.nativeEvent);
 
         if (isByNativeChange) {
-          const newNum = Number(e.target.value);
-          if (isNaN(newNum)) {
-            setInputStr(value.toString());
-          } else {
-            onSubmit(newNum);
-            e.target.focus();
-            setTimeout(() => e.target.select(), 10);
-          }
+          handleSubmitChanges(e.target.value);
+          e.target.focus();
+          handleSelect(e.target);
         } else {
           setInputStr(e.target.value);
         }
@@ -43,17 +62,8 @@ const NumericInput = ({ value, onSubmit, ...props }: NumericInputProps) => {
           setTimeout(() => (e.target as HTMLElement).blur(), 0);
         }
       }}
-      onFocus={(e) => {
-        setTimeout(() => e.target.select(), 10);
-      }}
-      onBlur={() => {
-        const newNum = Number(inputStr);
-        if (isNaN(newNum)) {
-          setInputStr(value.toString());
-        } else {
-          onSubmit(newNum);
-        }
-      }}
+      onFocus={(e) => handleSelect(e.target)}
+      onBlur={() => handleSubmitChanges(inputStr)}
     />
   );
 };
