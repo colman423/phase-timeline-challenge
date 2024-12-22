@@ -106,8 +106,6 @@ We can put `Playhead` under `Ruler`, so that we can reduce code for calculating 
 
 - write test
 
-- jsdoc for constatns, hooks
-
 - revert bg color debug
 
 # Phase Timeline Challenge

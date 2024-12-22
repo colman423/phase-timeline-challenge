@@ -1,6 +1,17 @@
 import React, { useEffect, useRef } from "react";
 import throttle from "lodash/throttle";
 
+/**
+ * Custom hook for making an element draggable.
+ *
+ * @param {React.RefObject<HTMLElement>} ref - The ref of the element to make draggable.
+ * @param {Context} initContext - The initial context object.
+ * @param {Object} options - Additional options for the draggable behavior.
+ * @param {(event: MouseEvent, getContext: () => Context, setContext: (newContext: Context) => void) => void} [options.onDragStart] - Callback function called when dragging starts. Context getter and setter are provided.
+ * @param {(event: MouseEvent, getContext: () => Context, setContext: (newContext: Context) => void) => void} [options.onDragEnd] - Callback function called when dragging ends. Context getter and setter are provided.
+ * @param {(startEvent: MouseEvent, cntEvent: MouseEvent, prevEvent: MouseEvent, getContext: () => Context, setContext: (newContext: Context) => void) => void} [options.onDragMove] - Callback function called when the element is being dragged. Context getter and setter are provided.
+ * @param {number} [options.throttleTime=10] - The time interval (in milliseconds) to throttle the `onDragMove` callback.
+ */
 const useDraggable = <RefElem extends HTMLElement, Context>(
   ref: React.RefObject<RefElem>,
   initContext: Context,
