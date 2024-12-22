@@ -7,7 +7,6 @@ import { useTimelineStore } from "./hooks";
 
 export const Timeline = () => {
   const playheadTime = useTimelineStore((state) => state.playheadTime);
-  const updatePlayheadTime = useTimelineStore((state) => state.updatePlayheadTime);
 
   return (
     <div
@@ -15,7 +14,7 @@ export const Timeline = () => {
     bg-gray-800 border-t-2 border-solid border-gray-700"
       data-testid="timeline"
     >
-      <PlayControls time={playheadTime} setTime={updatePlayheadTime} />
+      <PlayControls />
       <Ruler />
       <TrackList />
       <KeyframeList />

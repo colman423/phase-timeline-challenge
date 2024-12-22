@@ -1,15 +1,21 @@
 import React from "react";
+import { useTimelineStore } from "./hooks";
+import { MAX_DURATION } from "./constants";
 
-type PlayControlsProps = {
-  time: number;
-  setTime: (time: number) => void;
-};
-
-export const PlayControls = ({ time, setTime }: PlayControlsProps) => {
-  // TODO: implement time <= maxTime
+export const PlayControls = () => {
+  const playheadTime = useTimelineStore((state) => state.playheadTime);
+  const updatePlayheadTime = useTimelineStore(
+    (state) => state.updatePlayheadTime
+  );
+  const duration = useTimelineStore((state) => state.duration);
+  const updateDuration = useTimelineStore((state) => state.updateDuration);
 
   const onTimeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTime(Number(e.target.value));
+    updatePlayheadTime(Number(e.target.value));
+  };
+
+  const handleDurationChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    updateDuration(Number(e.target.value));
   };
 
   return (
@@ -27,7 +33,7 @@ export const PlayControls = ({ time, setTime }: PlayControlsProps) => {
           min={0}
           max={2000}
           step={10}
-          value={time}
+          value={playheadTime}
           onChange={onTimeChange}
         />
       </fieldset>
@@ -38,9 +44,10 @@ export const PlayControls = ({ time, setTime }: PlayControlsProps) => {
           type="number"
           data-testid="duration-input"
           min={100}
-          max={2000}
+          max={MAX_DURATION}
           step={10}
-          defaultValue={2000}
+          value={duration}
+          onChange={handleDurationChange}
         />
         Duration
       </fieldset>
