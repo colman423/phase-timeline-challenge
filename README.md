@@ -70,6 +70,10 @@
 
 - `useGlobalScroll` synchronizes components' `scrollLeft` and `scrollTop` into zustand store.
 
+### Performance Tuning
+
+- React already implements those optimization between JSX and browser DOM internally. So React re-render is not so evil, no need to do unnecessary optimization.
+
 ## DOM Hierarchy proposal
 
 If I can build the project from zero, some DOM hierarchy changes might be proposed.
@@ -88,7 +92,7 @@ We can put `Playhead` under `Ruler`, so that we can reduce code for calculating 
 
 - Most of commits are done within 30 minutes, it's because I used to rearrange every commits before pushing and submitting PR.
 
-- Personally I have above commit prefix, but it depends on team convention and team rules.
+- Personally I have below commit prefix, but it depends on team convention and team rules.
 
   - `impl`: Implement features. Implement non-features functions. Implement testing.
 
@@ -107,8 +111,6 @@ We can put `Playhead` under `Ruler`, so that we can reduce code for calculating 
 - write test
 
 - revert bg color debug
-
-# Phase Timeline Challenge
 
 # Phase Timeline Challenge
 
