@@ -63,7 +63,7 @@ https://github.com/user-attachments/assets/9a669854-e0c5-4950-8364-10fe0b40d16b
 
 https://github.com/user-attachments/assets/42190ade-f708-45a1-8168-2be779c66390
 
-- [ ] Clicking or dragging on the Ruler updates the Current Time and Playhead position
+- [V] Clicking or dragging on the Ruler updates the Current Time and Playhead position
 - [ ] Horizontal scrolling of the Ruler is synchronized with the Keyframe List
 - [ ] Ruler length visually represents the total Duration (`1ms = 1px`)
 - [ ] Ruler length updates only after specific actions on Duration input (losing focus, pressing Enter, using arrow keys, or clicking up/down buttons)
@@ -102,7 +102,6 @@ https://github.com/user-attachments/assets/3940cd0d-dd9d-4331-9172-592462ad65d3
 ## Important Notes
 
 ⚠️ **Warning**: Do not change any `data-testid` attribute names in the provided components. These are used for automated assessment of your assignment. Modifying these names may result in failing the assessment criteria.
-
 
 ## Submission
 
