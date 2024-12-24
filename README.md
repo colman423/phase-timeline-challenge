@@ -18,8 +18,6 @@
 
   - [Playhead Visibility](#playhead-visibility)
 
-- [Git Logs](#git-logs)
-
 ## Installation and Quick Start
 
 1. Use node v18, or if [.nvmrc](https://github.com/nvm-sh/nvm?tab=readme-ov-file#nvmrc) is installed, directly open the terminal.
@@ -74,11 +72,13 @@
 
 - React already implements those optimization between JSX and browser DOM internally. So React re-render is not so evil, no need to do unnecessary optimization.
 
-- Maybe there're potential performance issues with global scrolling, if we may render thousands of items, some DOM hierarchy may be changed to obtain smooth performance.
+- Maybe there're potential performance issues with global scrolling, since currently we use `useLayoutEffect` to dynamically set the `scrollLeft, scrollTop`.
+
+  If we may render thousands of items in real world cases, some DOM hierarchy can be changed to obtain smoother performance.
 
 ## DOM Hierarchy proposal
 
-If I can build the project from zero, some DOM hierarchy changes might be proposed.
+If the project can be built from zero, some DOM hierarchy changes might be proposed.
 
 I didn't change the current hierarchy, because it might break the behavior of automated assessment mentioned in this document.
 
@@ -88,13 +88,7 @@ We can put `Ruler, KeyframeList, Playhead` into a same ancestor, so that we can 
 
 ### Playhead Visibility
 
-We can put `Playhead` under `Ruler`, so that we can reduce code for calculating `hidden`. Just let the css do for us.
-
-## TODO
-
-- write test
-
-- revert bg color debug
+We can put `Playhead` under `Ruler`, so that we can reduce code for calculating `hidden`. Just let the CSS do for us.
 
 # Phase Timeline Challenge
 
