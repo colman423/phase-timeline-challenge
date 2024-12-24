@@ -4,6 +4,9 @@
 
 * {
   scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 /* feel free to add anything you think it's necessary */
