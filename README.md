@@ -74,6 +74,8 @@
 
 - React already implements those optimization between JSX and browser DOM internally. So React re-render is not so evil, no need to do unnecessary optimization.
 
+- Maybe there're potential performance issues with global scrolling, if we may render thousands of items, some DOM hierarchy may be changed to obtain smooth performance.
+
 ## DOM Hierarchy proposal
 
 If I can build the project from zero, some DOM hierarchy changes might be proposed.
@@ -87,24 +89,6 @@ We can put `Ruler, KeyframeList, Playhead` into a same ancestor, so that we can 
 ### Playhead Visibility
 
 We can put `Playhead` under `Ruler`, so that we can reduce code for calculating `hidden`. Just let the css do for us.
-
-## Git Logs
-
-- Most of commits are done within 30 minutes, it's because I used to rearrange every commits before pushing and submitting PR.
-
-- Personally I have below commit prefix, but it depends on team convention and team rules.
-
-  - `impl`: Implement features. Implement non-features functions. Implement testing.
-
-  - `fix`: Fix bugs
-
-  - `refator`: Improve the readiblity, maintainbility or extensibility. Behaviors should not be changed.
-
-  - `chore`: Things that is not so important.
-
-  - `doc`: Updating documents.
-
-  - `debug, tmp`: Add some things for debug. Normally it should not be pushed, but I made mistake this time and I don't want to force push the `main` branch to fix it.
 
 ## TODO
 
