@@ -27,13 +27,13 @@ export const Ruler = () => {
       onDragStart: (event, _getContext, setContext) => {
         const baseX = draggableRef.current!.getBoundingClientRect().left;
         setContext({ baseX: baseX });
-        handleChangeTime(event.pageX - baseX);
+        handleChangeTime(event.clientX - baseX);
       },
       onDragMove: (_startEvent, cntEvent, _prevEvent, getContext) => {
-        handleChangeTime(cntEvent.pageX - getContext().baseX);
+        handleChangeTime(cntEvent.clientX - getContext().baseX);
       },
       onDragEnd: (event, getContext) => {
-        handleChangeTime(event.pageX - getContext().baseX);
+        handleChangeTime(event.clientX - getContext().baseX);
       },
     }
   );
