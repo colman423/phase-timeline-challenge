@@ -48,7 +48,7 @@ export const Ruler = () => {
       ref={scrollRef}
     >
       <div
-        className="h-6 rounded-md bg-gradient-to-r from-red-500 to-blue-500"
+        className="h-6 rounded-md bg-white/25"
         style={{ width: timeToPixel(duration) }}
         data-testid="ruler-bar"
         ref={draggableRef}
